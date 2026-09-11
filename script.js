@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 const btn=document.querySelector('.hamb'),nav=document.querySelector('.nav');
 if(btn)btn.addEventListener('click',()=>{nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'✕':'☰'});
 document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
@@ -22,7 +23,7 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>na
   function openProduct(card){
     productName=card.dataset.productName||'TRY IT INDIA Product';
     const image=card.dataset.productImage||'';
-    modalImg.src=image; modalImg.alt=card.dataset.productAlt||productName;
+    modalImg.src=image; modalImg.alt=card.dataset.productAlt||productName; modalZoom=1; modalImg.style.transform='scale(1)';
     title.textContent=productName;
     desc.textContent=`${productName} from TRY IT INDIA. Contact us for product specifications, size, colour, availability and your requirement.`;
     wa.href=`https://wa.me/919582053344?text=${encodeURIComponent(`Hello TRY IT INDIA, I want details for ${productName}.`)}`;
@@ -33,6 +34,12 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>na
   });
   modal.querySelectorAll('[data-close-modal]').forEach(el=>el.addEventListener('click',()=>{modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}));
   modalImg.addEventListener('click',()=>{const src=modalImg.src; const i=Math.max(0,images.indexOf(src)); openViewer(i)});
+  const zoomIn=document.querySelector('.zoom-in'); const zoomOut=document.querySelector('.zoom-out');
+  let modalZoom=1;
+  function applyModalZoom(){ modalImg.style.transform=`scale(${modalZoom})`; }
+  zoomIn?.addEventListener('click',e=>{e.stopPropagation(); modalZoom=Math.min(2.8,modalZoom+.25); applyModalZoom();});
+  zoomOut?.addEventListener('click',e=>{e.stopPropagation(); modalZoom=Math.max(1,modalZoom-.25); applyModalZoom();});
+  modalImg.addEventListener('dblclick',e=>{e.stopPropagation(); modalZoom=modalZoom===1?2:1; applyModalZoom();});
   document.querySelector('.viewer-close').addEventListener('click',closeViewer);
   document.querySelector('.viewer-next').addEventListener('click',next);
   document.querySelector('.viewer-prev').addEventListener('click',prev);
@@ -47,3 +54,5 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>na
   viewerImg.addEventListener('touchend',e=>{if(zoom>1||!touchStart)return;const dx=e.changedTouches[0].clientX-touchStart;if(Math.abs(dx)>55)(dx<0?next:prev)();touchStart=0},{passive:true});
   document.addEventListener('keydown',e=>{if(viewer.classList.contains('show')){if(e.key==='Escape')closeViewer();if(e.key==='ArrowRight')next();if(e.key==='ArrowLeft')prev();}else if(modal.classList.contains('show')&&e.key==='Escape'){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')}});
 })();
+
+});
