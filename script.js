@@ -9,11 +9,11 @@ const products=[{"name": "Armchair With Cushion", "code": "TII-AC-001", "images"
 {"name":"Modern Outdoor Seating Set","code":"TII-LS-030","images":["lounge-08.jpeg"],"cat":"lounge seating featured","desc":"A coordinated outdoor seating collection with a clean contemporary profile for premium spaces."},
 {"name":"Green Woven Accent Chair","code":"TII-AC-031","images":["lounge-09.jpeg"],"cat":"seating lounge","desc":"A distinctive woven accent chair that adds colour and character to balconies, terraces and outdoor lounges."}];
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-const grid=$('#grid'); let filter='all',query='', currentProduct=0,currentImage=0;
+const grid=$('#grid'); const catalog=products.flat(Infinity); let filter='all',query='', currentProduct=0,currentImage=0;
 function wa(name,code){return 'https://wa.me/919582053344?text='+encodeURIComponent(`Hello TRY IT INDIA, I want details for ${name} (${code}).`)}
 function render(){
  grid.innerHTML='';
- const catalog=products.flat(Infinity); const list=catalog.filter(p=>(filter==='all'||p.cat.split(' ').includes(filter))&&(!query||p.name.toLowerCase().includes(query)||p.code.toLowerCase().includes(query)));
+ const list=catalog.filter(p=>(filter==='all'||p.cat.split(' ').includes(filter))&&(!query||p.name.toLowerCase().includes(query)||p.code.toLowerCase().includes(query)));
  list.forEach((p)=>{
   const i=catalog.indexOf(p), a=document.createElement('article'); a.className='product';
   a.innerHTML=`<div class="product-photo"><button class="product-open" data-i="${i}" aria-label="View ${p.name}"><img src="${p.images[0]}" alt="${p.name} — TRY IT INDIA" loading="lazy">${p.images.length>1?`<span class="image-count">▣ ${p.images.length} images</span>`:''}</button>${p.cat.includes('featured')?'<span class="badge">FEATURED</span>':''}</div><div class="product-info"><div><small>${p.code} / TRY IT INDIA</small><h3>${p.name}</h3></div><a class="enq" href="${wa(p.name,p.code)}" target="_blank">Enquire ↗</a></div>`;
@@ -36,9 +36,15 @@ function openModal(i){
  p.images.forEach((src,n)=>{const b=document.createElement('button');b.className='thumb'+(n===0?' active':'');b.dataset.n=n;b.innerHTML=`<img src="${src}" alt="${p.name} view ${n+1}">`;b.onclick=()=>showDetailImage(n);thumbs.appendChild(b)});
  showDetailImage(0); modal.classList.add('show');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
 }
-function showDetailImage(n){const p=catalog[currentProduct];currentImage=(n+p.images.length)%p.images.length;mimg.src=p.images[currentImage];mimg.alt=`${p.name} — view ${currentImage+1}`;$('#detail-count').textContent=`${currentImage+1} / ${p.images.length}`;$$('.thumb').forEach((x,i)=>x.classList.toggle('active',i===currentImage))}
+function showDetailImage(n){const p=catalog[currentProduct];if(!p||!p.images||!p.images.length)return;currentImage=(n+p.images.length)%p.images.length;mimg.src=p.images[currentImage];mimg.alt=`${p.name} — view ${currentImage+1}`;$('#detail-count').textContent=`${currentImage+1} / ${p.images.length}`;$$('.thumb').forEach((x,i)=>x.classList.toggle('active',i===currentImage))}
 function closeModal(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
-document.addEventListener('click',e=>{const b=e.target.closest('.product-open');if(b)openModal(+b.dataset.i)});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.product-open');
+  if(!b) return;
+  e.preventDefault();
+  const i=Number(b.dataset.i);
+  if(Number.isInteger(i) && catalog[i]) openModal(i);
+});
 $('#close').onclick=closeModal;$('.modal-bg').onclick=closeModal;
 $('#detail-prev').onclick=()=>showDetailImage(currentImage-1);$('#detail-next').onclick=()=>showDetailImage(currentImage+1);
 $('#mimg').onclick=()=>openViewer(currentProduct,currentImage);
@@ -47,7 +53,7 @@ $('#copy').onclick=async()=>{await navigator.clipboard?.writeText($('#mcode').te
 
 const viewer=$('#viewer');let vi=0,vii=0;
 function openViewer(i,n){vi=i;vii=n;viewer.classList.add('show');document.body.style.overflow='hidden';updateViewer()}
-function updateViewer(){const p=catalog[vi];$('#vimg').src=p.images[vii];$('#vcount').textContent=`${p.name} · ${vii+1} / ${p.images.length}`}
+function updateViewer(){const p=catalog[vi];if(!p||!p.images||!p.images.length)return;$('#vimg').src=p.images[vii];$('#vcount').textContent=`${p.name} · ${vii+1} / ${p.images.length}`}
 function vclose(){viewer.classList.remove('show');document.body.style.overflow=''}
 function vnext(d){const p=catalog[vi];vii=(vii+d+p.images.length)%p.images.length;updateViewer()}
 $('#vclose').onclick=vclose;$('#prev').onclick=()=>vnext(-1);$('#next').onclick=()=>vnext(1);
@@ -59,5 +65,3 @@ addEventListener('scroll',()=>{$('#header').classList.toggle('scrolled',scrollY>
 $('#top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),1600)}
 addEventListener('load',()=>{setTimeout(()=>$('#loader').classList.add('hide'),450);render()});
-// V15 safety: make any accidentally nested product arrays flat.
-if (Array.isArray(products[0])) { window.products.splice(0, window.products.length, ...products.flat(Infinity)); }

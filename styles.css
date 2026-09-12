@@ -390,3 +390,227 @@ footer p{color:#666c66!important;border-color:rgba(255,255,255,.08)!important}
  .product-photo{aspect-ratio:1/1!important}
  .catalog-head{flex-direction:column;align-items:flex-start!important}
 }
+
+/* V18 interaction + responsive repair */
+.product{
+  border-radius:0!important;
+}
+.product-photo,
+.product-photo img,
+.product-open{
+  border-radius:0!important;
+}
+.product-photo{
+  aspect-ratio: 4 / 4.35!important;
+  height:auto!important;
+}
+.product-open{
+  padding:0!important;
+  margin:0!important;
+  appearance:none!important;
+  -webkit-appearance:none!important;
+  cursor:zoom-in!important;
+}
+.product-open img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  border-radius:0!important;
+}
+.product-info{
+  border-radius:0!important;
+}
+.detail-gallery,.detail-main,.detail-main img,.detail-thumbs,.thumb{
+  border-radius:0!important;
+}
+.detail-main{
+  cursor:zoom-in!important;
+}
+.thumb{
+  border-radius:0!important;
+}
+.modal-box{
+  border-radius:0!important;
+}
+.viewer{
+  touch-action:pan-y!important;
+}
+.viewer img{
+  cursor:zoom-out!important;
+  user-select:none!important;
+  -webkit-user-drag:none!important;
+}
+
+/* Desktop: reference-like wide product cards */
+@media(min-width:901px){
+  .products{padding-left:5vw!important;padding-right:5vw!important}
+  .grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .product-photo{aspect-ratio:4/4.35!important}
+}
+
+/* Tablet */
+@media(max-width:900px){
+  header{
+    height:72px!important;
+    padding:0 5vw!important;
+  }
+  .logo img{width:48px!important;height:48px!important}
+  .logo span{font-size:14px!important}
+  .logo small{font-size:6px!important}
+  nav.open{
+    position:absolute!important;
+    top:72px!important;
+    left:0!important;
+    right:0!important;
+    width:100%!important;
+    background:#050707!important;
+    border-top:1px solid rgba(217,179,92,.22)!important;
+    border-bottom:1px solid rgba(217,179,92,.22)!important;
+    padding:12px 5vw 18px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:0!important;
+    z-index:99!important;
+  }
+  nav.open a{
+    padding:14px 0!important;
+    border-bottom:1px solid rgba(255,255,255,.07)!important;
+  }
+  .header-cta{display:none!important}
+  .menu{display:block!important;color:#f0cf79!important;font-size:25px!important}
+  .hero{min-height:620px!important}
+  .hero-content{padding:0 6vw!important}
+  .hero h1{font-size:clamp(42px,8vw,68px)!important}
+  .collection-grid{grid-template-columns:1fr 1fr!important}
+  .collection-grid button{height:420px!important}
+  .products{padding-left:5vw!important;padding-right:5vw!important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:15px!important}
+  .product-photo{aspect-ratio:4/4.5!important}
+  .product-info{display:block!important;padding:14px 14px 16px!important}
+  .enq{display:inline-block!important;margin-top:10px!important}
+  .modal-box{
+    inset:2.5vh 3vw!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:auto!important;
+    max-height:95vh!important;
+  }
+  .detail-gallery{
+    flex:0 0 auto!important;
+  }
+  .detail-main{
+    height:48vh!important;
+    min-height:300px!important;
+  }
+  .modal-copy{
+    padding:25px 22px 30px!important;
+    display:block!important;
+  }
+  .modal-copy h2{
+    font-size:34px!important;
+    line-height:1.05!important;
+  }
+  .detail-thumbs{
+    padding:10px 4px!important;
+    overflow-x:auto!important;
+    flex-wrap:nowrap!important;
+  }
+  .thumb{
+    flex:0 0 68px!important;
+    width:68px!important;
+    height:58px!important;
+  }
+}
+
+/* Phone: no circles, no cramped cards, full-width readable controls */
+@media(max-width:600px){
+  html,body{width:100%;overflow-x:hidden!important}
+  .topline{height:26px!important;font-size:6px!important;letter-spacing:.1em!important}
+  header{height:64px!important}
+  .logo{gap:8px!important}
+  .logo img{width:42px!important;height:42px!important}
+  .logo span{font-size:12px!important;letter-spacing:.02em!important}
+  .logo small{font-size:5px!important;letter-spacing:.08em!important}
+  nav.open{top:64px!important}
+  .hero{min-height:560px!important}
+  .hero-content{padding:0 6vw!important}
+  .hero h1{font-size:42px!important}
+  .hero p{font-size:12px!important;line-height:1.65!important;max-width:95%!important}
+  .hero-buttons{flex-wrap:wrap!important}
+  .tii-catalog-ribbon{overflow:hidden!important}
+  .intro{grid-template-columns:1fr!important;gap:18px!important;padding-top:52px!important;padding-bottom:52px!important}
+  .intro h2{font-size:35px!important}
+  .section{padding-top:55px!important;padding-bottom:55px!important}
+  .section-title{display:block!important}
+  .section-title>span{display:block!important;margin-top:10px!important}
+  .collection-grid{grid-template-columns:1fr!important}
+  .collection-grid button{height:300px!important}
+  .collection-grid strong{font-size:29px!important}
+  .products{padding-left:4vw!important;padding-right:4vw!important}
+  .catalog-head{gap:9px!important}
+  .tools{display:block!important}
+  .tools input{width:100%!important;max-width:none!important}
+  #chips{display:flex!important;overflow-x:auto!important;gap:7px!important;padding-bottom:4px!important}
+  #chips button{flex:0 0 auto!important}
+  .grid{grid-template-columns:1fr 1fr!important;gap:10px!important}
+  .product-photo{aspect-ratio:1/1.12!important}
+  .product-info{min-height:0!important;padding:11px!important}
+  .product-info h3{
+    font-size:16px!important;
+    line-height:1.15!important;
+    margin:5px 0 7px!important;
+  }
+  .product-info small{font-size:7px!important}
+  .enq{
+    width:100%!important;
+    text-align:center!important;
+    margin-top:8px!important;
+    padding:8px 5px!important;
+    font-size:7px!important;
+  }
+  .badge{top:8px!important;left:8px!important;font-size:6px!important;padding:5px 6px!important}
+  .modal-box{
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    max-height:none!important;
+    border:0!important;
+  }
+  .detail-main{
+    height:43vh!important;
+    min-height:245px!important;
+  }
+  .detail-main img{
+    object-fit:contain!important;
+    background:#080a09!important;
+  }
+  .detail-arrow{width:36px!important;height:36px!important}
+  .detail-thumbs{
+    padding:8px 12px!important;
+  }
+  .thumb{
+    flex-basis:62px!important;
+    width:62px!important;
+    height:54px!important;
+  }
+  .expand-gallery{margin:8px 12px 0!important;width:calc(100% - 24px)!important}
+  .modal-copy{padding:20px 18px 30px!important}
+  .modal-copy h2{font-size:29px!important}
+  .modal-copy p{font-size:11px!important;line-height:1.65!important}
+  .spec-grid{gap:8px!important}
+  .tags{flex-wrap:wrap!important}
+  .close{
+    top:8px!important;right:10px!important;
+    background:rgba(0,0,0,.55)!important;
+    color:#fff!important;border-radius:0!important;
+    width:40px!important;height:40px!important;
+  }
+  .viewer img{max-width:94vw!important;max-height:78vh!important}
+  .viewer>button{width:42px!important;height:42px!important}
+  .viewer #prev{left:8px!important}.viewer #next{right:8px!important}
+  .float-wa{width:52px!important;height:52px!important}
+}
+
+/* Prevent accidental circular/cropped UI on every product-related visual */
+.product *, .detail-gallery *, .viewer *{border-radius:0!important}
