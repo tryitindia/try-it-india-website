@@ -1,1 +1,1 @@
-const TRY_IT_INDIA={brand:'TRY IT INDIA',experience:'10+ years',whatsapp:'9582053344',codePrefix:'TII',products:11};
+const TRY_IT_INDIA={"brand": "TRY IT INDIA", "experience": "10+ years", "whatsapp": "9582053344", "codePrefix": "TII", "products": 14};
