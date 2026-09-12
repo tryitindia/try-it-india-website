@@ -1,1 +1,1 @@
-const TRY_IT_INDIA={brand:'TRY IT INDIA',experience:'10+ years',whatsapp:'9582053344',productCodes:['TI-OS-001','TI-OL-002','TI-SS-003','TI-PL-004','TI-DS-005','TI-PS-006','TI-OA-007','TI-PC-008','TI-OC-009','TI-OP-010','TI-OP-011']};
+const TRY_IT_INDIA={brand:'TRY IT INDIA',experience:'10+ years',whatsapp:'9582053344',codePrefix:'TII',products:11};
