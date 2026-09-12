@@ -83,3 +83,44 @@ hr{border-color:var(--line)!important}::selection{background:rgba(214,168,74,.35
 }
 
 #chips button[data-f="bar"]{border-color:rgba(214,168,74,.28)}
+
+/* V15 — full catalogue / premium 4-column product system */
+.catalog-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 0 22px;border-top:1px solid rgba(255,255,255,.09);
+  color:#a9a399;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+}
+.catalog-head span:last-child{color:#e8bd63}
+.grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px!important;
+}
+.product{min-width:0;overflow:hidden}
+.product-photo{aspect-ratio:1/1.12!important;overflow:hidden}
+.product-open{width:100%;height:100%;display:block;background:#0b0b0b}
+.product-open img{
+  width:100%;height:100%;object-fit:cover!important;
+  object-position:center;
+  transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .4s ease;
+}
+.product:hover .product-open img{transform:scale(1.045);filter:saturate(1.04)}
+.product-info{padding:18px 18px 20px!important;min-height:122px}
+.product-info h3{font-size:17px!important;line-height:1.25!important;margin:7px 0 12px}
+.product-info small{font-size:9px!important;letter-spacing:.14em;color:#c6a45f!important}
+.enq{border:1px solid rgba(214,168,74,.55)!important;border-radius:999px!important;padding:9px 13px!important;color:#f0c66d!important}
+.image-count{background:rgba(0,0,0,.78)!important;border:1px solid rgba(214,168,74,.35);color:#f0c66d!important}
+.badge{background:#d9ae54!important;color:#0a0a0a!important}
+.footer-brand img{width:62px;height:62px;object-fit:contain;border-radius:50%}
+.footer-brand{display:flex;align-items:center;text-decoration:none}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:720px){
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+ .product-photo{aspect-ratio:1/1.15!important}
+ .product-info{padding:13px!important;min-height:112px}
+ .product-info h3{font-size:14px!important}
+ .catalog-head{font-size:8px;gap:14px;line-height:1.5}
+}
+@media(max-width:460px){.grid{grid-template-columns:1fr!important}}
+
+/* V16 — expanded seating/lounging catalogue */
+.product-photo img{image-rendering:auto}
