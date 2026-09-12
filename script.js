@@ -56,3 +56,26 @@ document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>na
 })();
 
 });
+
+
+/* Premium V5 interactions */
+document.addEventListener('DOMContentLoaded',()=>{
+  const search=document.getElementById('productSearch');
+  const products=[...document.querySelectorAll('.product')];
+  const chips=[...document.querySelectorAll('.filter-chip')];
+  let filter='all';
+  function render(){
+    const q=(search?.value||'').trim().toLowerCase();
+    products.forEach(card=>{
+      const name=(card.dataset.productName||'').toLowerCase();
+      const cats=(card.dataset.category||'').toLowerCase();
+      const okFilter=filter==='all'||cats.includes(filter);
+      const okSearch=!q||name.includes(q);
+      card.style.display=okFilter&&okSearch?'':'none';
+    });
+  }
+  search?.addEventListener('input',render);
+  chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.classList.remove('active'));c.classList.add('active');filter=c.dataset.filter;render()}));
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+});
