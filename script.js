@@ -65,18 +65,9 @@ addEventListener('scroll',()=>{$('#header').classList.toggle('scrolled',scrollY>
 $('#top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),1600)}
 
-// Full project catalogue — rendered as a premium vertical scroll experience.
+// Full project catalogue — static HTML pages + premium viewer.
 const catalogStage=$('#catalog-stage');
 if(catalogStage){
-  const frag=document.createDocumentFragment();
-  for(let n=1;n<=74;n++){
-    const card=document.createElement('article');
-    card.className='catalog-page';
-    card.dataset.page=n;
-    card.innerHTML=`<div class="catalog-page-top"><span>TRY IT INDIA</span><span>PROJECT COLLECTIONS 2026</span><b>${String(n).padStart(2,'0')} / 74</b></div><button class="catalog-page-open" type="button" aria-label="Open catalogue page ${n}"><img src="catalog/page-${String(n).padStart(2,'0')}.webp" alt="TRY IT INDIA Project Collections 2026 — catalogue page ${n}" loading="${n<3?'eager':'lazy'}" decoding="async"></button><div class="catalog-page-bottom"><span>TRY IT INDIA</span><span>PROJECT COLLECTIONS 2026</span><span>${String(n).padStart(2,'0')}</span></div></article>`;
-    frag.appendChild(card);
-  }
-  catalogStage.appendChild(frag);
   const label=$('#catalog-page-label'), bar=$('#catalog-progress-bar');
   const pages=[...catalogStage.querySelectorAll('.catalog-page')];
   const io=new IntersectionObserver(entries=>{
