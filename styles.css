@@ -614,3 +614,38 @@ footer p{color:#666c66!important;border-color:rgba(255,255,255,.08)!important}
 
 /* Prevent accidental circular/cropped UI on every product-related visual */
 .product *, .detail-gallery *, .viewer *{border-radius:0!important}
+
+/* ===== TRY IT INDIA FULL PROJECT CATALOGUE ===== */
+.project-catalog{background:#0b0f0c;color:#f5f2ea;padding-top:120px;padding-bottom:120px;position:relative;overflow:hidden}
+.project-catalog:before{content:'CATALOGUE';position:absolute;right:-2vw;top:30px;font:800 13vw/1 Manrope;letter-spacing:-.08em;color:#ffffff03;pointer-events:none}
+.catalog-intro{display:grid;grid-template-columns:1.25fr .75fr;gap:8vw;align-items:end;margin-bottom:54px;position:relative;z-index:1}
+.project-catalog .eyebrow{color:#d5bd83!important}
+.catalog-intro h2{color:#f5f2ea!important;font:600 clamp(44px,5.6vw,78px)/.96 'Playfair Display';letter-spacing:-.045em;margin:14px 0 0}
+.catalog-intro h2 i{color:#d1bb83}
+.catalog-intro-copy{border-left:1px solid #ffffff1c;padding-left:30px}
+.catalog-kicker{font-size:8px;letter-spacing:.18em;color:#d5bd83}
+.catalog-intro-copy p{font-size:11px;line-height:1.85;color:#aeb7b0;margin:16px 0 0;max-width:430px}
+.catalog-progress{position:sticky;top:84px;z-index:8;display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#0b0f0ce8;backdrop-filter:blur(12px);border-block:1px solid #ffffff13;padding:13px 0;margin:0 0 34px;font-size:7px;letter-spacing:.18em;color:#c9a960}
+.catalog-progress i{height:1px;background:#ffffff18;display:block;position:relative;overflow:hidden}
+.catalog-progress i b{display:block;height:100%;width:1.35%;background:#d5bd83;transition:width .25s ease}
+.catalog-stage{display:flex;flex-direction:column;gap:30px;align-items:center;position:relative;z-index:1}
+.catalog-page{width:min(100%,1220px);margin:0 auto;position:relative;filter:drop-shadow(0 24px 38px #0008);transition:transform .5s ease}
+.catalog-page:nth-child(3n){transform:translateX(8px)}
+.catalog-page:nth-child(3n+1){transform:translateX(-5px)}
+.catalog-page:hover{transform:translateY(-3px) scale(1.002)}
+.catalog-page-open{display:block;width:100%;padding:0;background:#f6f3eb;overflow:hidden;cursor:zoom-in;box-shadow:0 0 0 1px #ffffff12}
+.catalog-page-open img{display:block;width:100%;height:auto}
+.catalog-page-top,.catalog-page-bottom{position:absolute;left:18px;right:18px;display:flex;justify-content:space-between;align-items:center;z-index:2;pointer-events:none;font-size:6px;letter-spacing:.18em;text-transform:uppercase;color:#d7c181}
+.catalog-page-top{top:14px}.catalog-page-bottom{bottom:12px}
+.catalog-page-top span:first-child,.catalog-page-bottom span:first-child{font-weight:700}
+.catalog-page-top b{font:600 7px Manrope;color:#fff}
+.catalog-page-bottom{color:#9ba59e}
+.catalog-page-bottom span:first-child{color:#c9a960}
+.catalog-modal{position:fixed;inset:0;background:#050706f2;z-index:500;display:none;align-items:center;justify-content:center;padding:4vh 7vw;backdrop-filter:blur(10px)}
+.catalog-modal.show{display:flex}
+.catalog-modal img{max-width:90vw;max-height:92vh;object-fit:contain;box-shadow:0 25px 70px #000b}
+.catalog-modal button{position:absolute;color:#fff;width:48px;height:48px;font-size:44px;display:grid;place-items:center}
+.catalog-modal-close{right:25px;top:18px}.catalog-modal-prev{left:24px;top:50%;transform:translateY(-50%)}.catalog-modal-next{right:24px;top:50%;transform:translateY(-50%)}
+.catalog-modal span{position:absolute;bottom:22px;color:#d7c181;font-size:8px;letter-spacing:.18em}
+@media(max-width:900px){.catalog-intro{grid-template-columns:1fr;gap:24px}.catalog-intro-copy{border-left:0;border-top:1px solid #ffffff1c;padding:20px 0 0}.catalog-progress{top:70px}.catalog-page{width:100%}.catalog-page:nth-child(3n),.catalog-page:nth-child(3n+1){transform:none}.catalog-page-top,.catalog-page-bottom{left:10px;right:10px}.catalog-page-top{top:9px}.catalog-page-bottom{bottom:8px}.catalog-modal{padding:5vh 2vw}.catalog-modal img{max-width:96vw;max-height:88vh}.catalog-modal-prev{left:2px}.catalog-modal-next{right:2px}.catalog-modal-close{right:8px}}
+@media(max-width:650px){.project-catalog{padding-top:78px;padding-bottom:80px}.catalog-intro h2{font-size:43px}.catalog-progress{grid-template-columns:auto 1fr auto;gap:9px;font-size:6px;margin-bottom:20px}.catalog-stage{gap:14px}.catalog-page{filter:drop-shadow(0 12px 22px #0008)}.catalog-page-top,.catalog-page-bottom{font-size:5px}.catalog-page-top b{font-size:5px}.catalog-modal button{width:40px;height:40px;font-size:36px}.catalog-modal-prev{left:0}.catalog-modal-next{right:0}}

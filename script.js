@@ -64,4 +64,44 @@ $('#menu').onclick=()=>{$('#nav').classList.toggle('open');$('#menu').textConten
 addEventListener('scroll',()=>{$('#header').classList.toggle('scrolled',scrollY>30);$('#top').classList.toggle('show',scrollY>700)},{passive:true});
 $('#top').onclick=()=>scrollTo({top:0,behavior:'smooth'});
 function toast(t){$('#toast').textContent=t;$('#toast').classList.add('show');setTimeout(()=>$('#toast').classList.remove('show'),1600)}
+
+// Full project catalogue — rendered as a premium vertical scroll experience.
+const catalogStage=$('#catalog-stage');
+if(catalogStage){
+  const frag=document.createDocumentFragment();
+  for(let n=1;n<=74;n++){
+    const card=document.createElement('article');
+    card.className='catalog-page';
+    card.dataset.page=n;
+    card.innerHTML=`<div class="catalog-page-top"><span>TRY IT INDIA</span><span>PROJECT COLLECTIONS 2026</span><b>${String(n).padStart(2,'0')} / 74</b></div><button class="catalog-page-open" type="button" aria-label="Open catalogue page ${n}"><img src="catalog/page-${String(n).padStart(2,'0')}.webp" alt="TRY IT INDIA Project Collections 2026 — catalogue page ${n}" loading="${n<3?'eager':'lazy'}" decoding="async"></button><div class="catalog-page-bottom"><span>TRY IT INDIA</span><span>PROJECT COLLECTIONS 2026</span><span>${String(n).padStart(2,'0')}</span></div></article>`;
+    frag.appendChild(card);
+  }
+  catalogStage.appendChild(frag);
+  const label=$('#catalog-page-label'), bar=$('#catalog-progress-bar');
+  const pages=[...catalogStage.querySelectorAll('.catalog-page')];
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const n=Number(entry.target.dataset.page);
+        label.textContent=`PAGE ${String(n).padStart(2,'0')} / 74`;
+        bar.style.width=`${(n/74)*100}%`;
+      }
+    });
+  },{rootMargin:'-35% 0px -55% 0px',threshold:0});
+  pages.forEach(p=>io.observe(p));
+  const catalogModal=document.createElement('div');
+  catalogModal.className='catalog-modal';
+  catalogModal.innerHTML='<button class="catalog-modal-close" aria-label="Close catalogue">×</button><button class="catalog-modal-prev" aria-label="Previous page">‹</button><img id="catalog-modal-img" alt=""><button class="catalog-modal-next" aria-label="Next page">›</button><span id="catalog-modal-count"></span>';
+  document.body.appendChild(catalogModal);
+  let catalogCurrent=1;
+  const cmImg=catalogModal.querySelector('#catalog-modal-img'), cmCount=catalogModal.querySelector('#catalog-modal-count');
+  function showCatalogPage(n){catalogCurrent=Math.max(1,Math.min(74,n));cmImg.src=`catalog/page-${String(catalogCurrent).padStart(2,'0')}.webp`;cmImg.alt=`TRY IT INDIA catalogue page ${catalogCurrent}`;cmCount.textContent=`${String(catalogCurrent).padStart(2,'0')} / 74`;catalogModal.classList.add('show');document.body.style.overflow='hidden';}
+  pages.forEach(p=>p.querySelector('.catalog-page-open').addEventListener('click',()=>showCatalogPage(Number(p.dataset.page))));
+  catalogModal.querySelector('.catalog-modal-close').onclick=()=>{catalogModal.classList.remove('show');document.body.style.overflow=''};
+  catalogModal.querySelector('.catalog-modal-prev').onclick=()=>showCatalogPage(catalogCurrent-1);
+  catalogModal.querySelector('.catalog-modal-next').onclick=()=>showCatalogPage(catalogCurrent+1);
+  catalogModal.addEventListener('click',e=>{if(e.target===catalogModal){catalogModal.classList.remove('show');document.body.style.overflow=''}});
+  document.addEventListener('keydown',e=>{if(!catalogModal.classList.contains('show'))return;if(e.key==='Escape'){catalogModal.classList.remove('show');document.body.style.overflow=''}if(e.key==='ArrowLeft')showCatalogPage(catalogCurrent-1);if(e.key==='ArrowRight')showCatalogPage(catalogCurrent+1)});
+}
+
 addEventListener('load',()=>{setTimeout(()=>$('#loader').classList.add('hide'),450);render()});
