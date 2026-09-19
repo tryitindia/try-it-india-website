@@ -614,3 +614,7 @@ footer p{color:#666c66!important;border-color:rgba(255,255,255,.08)!important}
 
 /* Prevent accidental circular/cropped UI on every product-related visual */
 .product *, .detail-gallery *, .viewer *{border-radius:0!important}
+/* V18 — catalogue categories */
+.product-type{display:block;font-style:normal;font-size:8px;text-transform:uppercase;letter-spacing:.09em;color:#9e9d95;line-height:1.45;max-width:220px}
+.tools #chips{flex-wrap:wrap}
+@media(max-width:720px){.tools #chips{flex-wrap:nowrap}.product-type{font-size:7px}}
