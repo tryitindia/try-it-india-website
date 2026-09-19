@@ -656,3 +656,49 @@ footer p{color:#666c66!important;border-color:rgba(255,255,255,.08)!important}
 .catalog-page{opacity:1!important;visibility:visible!important}
 .catalog-page-open{border:0;outline:0}
 .catalog-page-open:focus-visible{outline:1px solid #d5bd83;outline-offset:5px}
+
+
+/* V19 — catalogue displayed like the product showcase, but full-page */
+.project-catalog{padding-left:0!important;padding-right:0!important;}
+.project-catalog .catalog-intro,
+.project-catalog .catalog-progress{width:min(90%,1400px);margin-left:auto;margin-right:auto}
+.catalog-stage{
+  width:100vw!important;
+  margin-left:calc(50% - 50vw)!important;
+  margin-right:calc(50% - 50vw)!important;
+  gap:0!important;
+  align-items:stretch!important;
+}
+.catalog-page{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  transform:none!important;
+  filter:none!important;
+  border-top:1px solid rgba(217,179,92,.18);
+  background:#050707;
+}
+.catalog-page:hover{transform:none!important}
+.catalog-page-open{
+  width:100%!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#050707!important;
+  cursor:zoom-in;
+}
+.catalog-page-open img{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s ease;
+}
+.catalog-page-open:hover img{transform:scale(1.008);filter:brightness(1.025)}
+.catalog-page-top{top:16px!important;left:24px!important;right:24px!important;opacity:.82}
+.catalog-page-bottom{display:none!important}
+@media(max-width:700px){
+ .project-catalog .catalog-intro,.project-catalog .catalog-progress{width:90%}
+ .catalog-page-top{left:12px!important;right:12px!important;top:10px!important;font-size:5px!important}
+}
